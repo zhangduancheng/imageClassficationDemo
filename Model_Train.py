@@ -45,7 +45,7 @@ class PreFile(object):
                 new_img.save(os.path.join(Output_folder, os.path.basename(i)))
 
 
-# main Training program
+# 主程序
 class Training(object):
     def __init__(self, batch_size, number_batch, categories, train_folder):
         self.batch_size = batch_size
@@ -74,7 +74,7 @@ class Training(object):
         train_img_list = train_img_list.astype('float32')
         train_img_list /= 255
 
-        # -- setup Neural network CNN
+        # 建立CNN
         model = Sequential()
 
         model.add(Convolution2D(
@@ -89,8 +89,7 @@ class Training(object):
             strides=(2, 2),
             padding='same',
         ))
-
-        # CNN Layer - 2
+        
         model.add(Convolution2D(
             filters=64,
             kernel_size=(2, 2),
@@ -103,7 +102,7 @@ class Training(object):
             padding='same',
         ))
 
-        # Fully connected Layer -1
+        # Fully connected Layer
         model.add(Flatten())
         model.add(Dense(1024))
         model.add(Activation('relu'))
@@ -137,7 +136,7 @@ class Training(object):
             verbose=1,
             callbacks=[tbCallbacks]
         )
-        # SAVE your work -model
+        # SAVE your work model
         model.save('./modelname.h5')
 
         acc = history.history['acc']
