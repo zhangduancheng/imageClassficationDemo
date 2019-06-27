@@ -26,11 +26,11 @@ class ModelTest(object):
         conv_RGB = imag_open.convert('RGB')
         new_img = conv_RGB.resize((self.Width,self.Height),Image.BILINEAR)
         new_img.save(self.test_file)
-                                                                                   #print('Image Resized') # 处理照片shape
+                                                                                   
         image = processimage.imread(self.test_file)
-        image_to_array = np.array(image)/255.0                                                       #转成float
+        image_to_array = np.array(image)/255.0                                                      
         image_to_array = image_to_array.reshape(-1,100,100,3)
-        #测试照片                                                                    #print('Image reshaped')
+        #测试照片                                                                   
         test = model.predict(image_to_array)
         Final_Test = [result.argmax() for result in test][0]
 
